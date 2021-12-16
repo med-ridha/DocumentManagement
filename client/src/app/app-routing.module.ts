@@ -3,7 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { DocumentListComponent } from './pages/document-list/document-list.component';
 
 const routes: Routes = [
-  { path: '', component: DocumentListComponent  }
+  { path: '', redirectTo : 'documents', pathMatch: 'full'  },
+  { path: 'documents', component: DocumentListComponent  },
+  { path: 'documents/:documentId', component: DocumentListComponent  }
 ];
 
 @NgModule({

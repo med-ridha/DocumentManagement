@@ -3,6 +3,9 @@ $darkBlue: #1985e4;
 $danger: #e27e7e;
 $light: #f4f4f4;
 
+html, body{
+    height: 100%;
+}
 .centered-content {
     display: flex;
     justify-content: center;
@@ -24,7 +27,7 @@ $light: #f4f4f4;
 .modal-box {
     min-height: 200px;
     width: 100%;
-    max-width: 550px;
+    max-width: 580px;
     background: #201d1d;
     border-radius: 5px;
     padding: 35px;

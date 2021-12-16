@@ -1,16 +1,36 @@
 <div class = "centered-content">
     <div class = "document-manager-container">
         <div class="sidebar">
-            <h1 class="title has-text-primary">document</h1>
+            <h1 class="title has-text-primary">documents</h1>
             <div class="list-menu">
-                <a href="#" class="list-menu-item is-active" *ngFor="let document for documents">
-                    <p clas="white-text">
-                        Document 1
+                <a class="list-menu-item" *ngFor="let document of documents" [routerLink] = "['/documents', document._id]" routerLinkActive="is-active">
+                    <p clas="white-text" (click)="onDocumentClick(document._id)">
+                        {{ document.fullName }}
                         <span class="pull-right task-delete btn-rounded-corners">X</span>
                     </p>
                 </a>
             </div>
             <button class="btn btn-primary btn-rounded-corners">Add Document</button>
+        </div>
+        <div class="document-list-container" >
+            <div *ngIf="found">
+                <h1 class="title has-text-primary">{{ doc[0].fullName }}</h1>
+                <div class="document" >
+                    <p class="white-text">
+                        Full Name: {{ doc[0].description }}
+                    </p>
+                </div>
+                <div class="document" >
+                    <p class="white-text">
+                        Date: {{ doc[0].date }}
+                    </p>
+                </div>
+                <div class="document" >
+                    <p class="white-text">
+                        document name : {{ doc[0].doc }}
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
