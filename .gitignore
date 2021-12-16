@@ -1,4 +1,6 @@
 /server/node_modules
+/server/.env
+/server/.eslintrc.js
 /client/node_modules
 /client/.angular/cache
 /client/.sass-cache
