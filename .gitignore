@@ -1,2 +1,10 @@
-/client/node_modules
 /server/node_modules
+/client/node_modules
+/client/.angular/cache
+/client/.sass-cache
+/client/tmp
+/client/dist
+/client/out-tsc
+
+
+
