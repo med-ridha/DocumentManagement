@@ -7,6 +7,4 @@
 /client/tmp
 /client/dist
 /client/out-tsc
-
-
-
+/client/src/.eslintrc.json
