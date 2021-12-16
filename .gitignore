@@ -1,10 +1,10 @@
 /server/node_modules
 /server/.env
-/server/.eslintrc.js
+/server/.eslintrc.json
 /client/node_modules
 /client/.angular/cache
 /client/.sass-cache
 /client/tmp
 /client/dist
 /client/out-tsc
-/client/src/.eslintrc.json
+/client/.eslintrc.json
