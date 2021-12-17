@@ -8,6 +8,6 @@ Angular cli
 mongodb
 
 # make sure to start the server from the sever folder for file handling
-cd server/
+``` cd server/ ``` 
 node app.js
 
