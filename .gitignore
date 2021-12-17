@@ -2,7 +2,7 @@
 /server/.env
 /server/.eslintrc.json
 /server/tmp
-/server/uploads
+/server/uploads/*
 /client/node_modules
 /client/.angular/cache
 /client/.sass-cache
