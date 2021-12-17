@@ -1,13 +1,19 @@
 const express = require('express');
-const cors = require('cors');
-const mongoose = require(`./database/mongoose.js`);
-const document = require(`./database/module/document.js`);
 const app = express();
+const fs = require('fs');
+
+const document = require('./database/module/document.js');
+const mongoose = require('./database/mongoose.js');
+
+const cors = require('cors');
 app.use(cors());
 app.use(express.json());
-const PORT = 1337;
 
-app.listen(PORT, () => console.log(`served at ${PORT}`));
+const multer = require('multer');
+const upload = multer( { dest: 'tmp/' } );
+const type = upload.single('recfile');
+
+app.listen(1337, () => console.log(`served at 1337`));
 
 app.get('/documents/all', (req, res) =>{
     document.find({})
@@ -34,20 +40,56 @@ app.put('/documents/update/:documentId', (req, res) => {
         .then(result => res.send(result))
         .catch((error) => console.error(error));
 });
-app.post ('/documents/create', (req, res) => {
+
+app.get ('/uploads/:filename', type, (req, res) => {
+    let filename = req.params.filename;
+    res.download(`uploads/${filename}`);
+});
+app.post ('/documents/create', type, (req, res) => {
     let fullName = req.body.fullname;
     let description = req.body.des;
-    let doc = req.body.doc;
-    if (fullName.length == 0 || description.length == 0 || doc.length == 0){
-        res.status(400).send("required fields");
-    }else{
-        (new document({
-            fullName : fullName,
-            description: description,
-            doc: doc 
-        }))
-            .save()
-            .then(document => res.send())
-            .catch((error) => console.error(error));
-    }
+    let doc = req.file.originalname;
+    let tmpPath = req.file.path;
+    var targetPath = 'uploads/' + doc;
+
+    var src = fs.createReadStream(tmpPath);
+    var dest = fs.createWriteStream(targetPath);
+    src.pipe(dest);
+    src.on('end', () => {
+        fs.unlink(tmpPath, (err) =>{
+            if (err) throw err;
+            console.log("file deleted");
+        })
+        console.log('done') 
+        if (fullName.length == 0 || description.length == 0 || doc.length == 0){
+            res.status(400).send("required fields");
+        }else{
+            (new document({ fullName : fullName, description: description, doc: doc }))
+                .save()
+                .then(doc => res.send(doc))
+                .catch((error) => console.error(error));
+        }
+    });
+    src.on('error', (err) => {
+        console.log(err)
+        res.status(500).json({'error': err});
+    });
 });
+
+app.delete('/documents/delete/:documentId', (req, res)=>{
+    let filter = {
+        '_id' : req.params.documentId
+    }
+    document.find(filter).then(result => {
+        document.deleteOne(filter)
+            .then((doc) => {
+                fs.unlink(`uploads/${result[0].doc}`, (err)=>{
+                    if (err) throw err;
+                    console.log('deleted');
+                    res.send(doc)
+                })
+            })
+            .catch((error) => console.error(error));
+    })
+    
+})

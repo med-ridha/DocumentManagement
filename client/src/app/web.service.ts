@@ -15,15 +15,15 @@ export class WebService {
     return this.http.get(`${this.ROOTURL}/${uri}`);
   }
 
-  post(uri: string, payload: Object){
-    return this.http.get(`${this.ROOTURL}/${uri}`, payload);
+  post(uri: string, payload: any){
+    return this.http.post(`${this.ROOTURL}/${uri}`, payload);
   }
 
-  put(uri: string, payload: Object){
-    return this.http.get(`${this.ROOTURL}/${uri}`, payload);
+  put(uri: string, payload: any){
+    return this.http.patch(`${this.ROOTURL}/${uri}`, payload);
   }
 
   delete(uri: string){
-    return this.http.get(`${this.ROOTURL}/${uri}`);
+    return this.http.delete(`${this.ROOTURL}/${uri}`);
   }
 }

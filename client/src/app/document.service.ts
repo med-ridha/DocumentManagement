@@ -16,12 +16,10 @@ export class DocumentService {
   getDocument(documentId : string){
     return this.webService.get(`documents/${documentId}`);
   }
-  createDocument (fullName: string, descreption: string, doc: string){
-    const payload : Object = {
-      "fullname" :fullName,
-      "des" : descreption,
-      "doc" : doc
-    };
+  createDocument (payload: any){
     return this.webService.post('documents/create', payload );
+  }
+  deleteDocument (payload: any){
+    return this.webService.delete('documents/delete/'+payload );
   }
 }

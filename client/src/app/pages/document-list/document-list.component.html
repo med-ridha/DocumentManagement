@@ -10,7 +10,7 @@
                     </p>
                 </a>
             </div>
-            <button class="btn btn-primary btn-rounded-corners">Add Document</button>
+            <button routerLink="/newdocument" class="btn btn-primary btn-rounded-corners">Add Document</button>
         </div>
         <div class="document-list-container" >
             <div *ngIf="found">
@@ -25,11 +25,16 @@
                         Date: {{ doc[0].date }}
                     </p>
                 </div>
-                <div class="document" >
+                <div class="document"  (click) = "downloadFile(doc[0].doc)">
                     <p class="white-text">
-                        document name : {{ doc[0].doc }}
+                        <a>
+                            document name : {{ doc[0].doc }}
+                        </a>
                     </p>
                 </div>
+                <button class="red btn btn-primary remove-button" (click)="deleteDocument(doc[0]._id)">
+                    Delete
+                </button>
             </div>
         </div>
     </div>

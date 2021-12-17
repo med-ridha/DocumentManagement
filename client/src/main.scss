@@ -6,7 +6,18 @@ $light: #f4f4f4;
 html, body{
     height: 100%;
 }
+.hidden{
+    display:none;
+}
+
+.red{
+    background: red;
+    &:hover{
+        background: red;
+    }
+}
 .centered-content {
+
     display: flex;
     justify-content: center;
     align-items: center;
