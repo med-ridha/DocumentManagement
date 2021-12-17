@@ -1,0 +1,20 @@
+<div class="centered-content">
+    <div class="modal-box form-group" *ngIf="doc">
+        <h1 class="title"> Update <span>{{ doc.fullName }}</span></h1>
+        <input #fullname type="text" class = "form-input form-control has-background-light" placeholder="{{ doc.fullName }}">
+        <input #desc type="text" class = "form-input form-control has-background-light" placeholder="{{ doc.description }}">
+
+        <input type="file" class="file-input hidden" (change)="onFileSelected($event)" #fileUpload>
+        <div  id="fileupload" (click)="fileUpload.click()" class="centered-content file-upload red">
+            <p class="textinsidep">
+                {{ fileName || "No file uploaded yet." }}
+            </p>
+        </div>
+        <div class="pull-right">
+            <button class="btn white-text" routerLink='/'> Cancel </button>
+            <button class="btn btn-primary btn-rounded-corners" (click)="updateDocument(fullname.value, 
+            desc.value, fileUpload.value)">Update</button>
+        </div>
+    </div>
+</div>
+
