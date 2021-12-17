@@ -1,18 +1,19 @@
 <div class="centered-content">
     <div class="modal-box form-group">
         <h1 class="title"> Add new Document </h1>
-        <input #fullname type="text" class = "form-control has-background-light" placeholder="Full Name">
-        <input #desc type="text" class = "form-control has-background-light" placeholder="Description">
+        <input #fullname type="text" class = "form-input form-control has-background-light" placeholder="Full Name">
+        <input #desc type="text" class = "form-input form-control has-background-light" placeholder="Description">
 
         <input type="file" class="file-input hidden" (change)="onFileSelected($event)" #fileUpload>
-        <div  id="fileuploadtest" (click)="fileUpload.click()" class="centered-content file-upload red">
-            <p>
+        <div  id="fileupload" (click)="fileUpload.click()" class="centered-content file-upload red">
+            <p class="textinsidep">
                 {{ fileName || "No file uploaded yet." }}
             </p>
         </div>
-
-        <button class="btn white-text" routerLink='/'> Cancel </button>
-        <button class="btn btn-primary btn-rounded-corners" (click)="addDocument(fullname.value, 
+        <div class="pull-right">
+            <button class="btn white-text" routerLink='/'> Cancel </button>
+            <button class="btn btn-primary btn-rounded-corners" (click)="addDocument(fullname.value, 
             desc.value, fileUpload.value)">Add</button>
+        </div>
     </div>
 </div>

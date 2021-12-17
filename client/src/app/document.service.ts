@@ -22,4 +22,7 @@ export class DocumentService {
   deleteDocument (payload: any){
     return this.webService.delete('documents/delete/'+payload );
   }
+  updateDocument (documentId: string, payload: any){
+    return this.webService.put('documents/update/'+documentId,payload);
+  }
 }

@@ -2,6 +2,12 @@
 .green{
     background: green;
 }
+.form-input{
+    margin-top: 10px;
+}
+.textinsidep{
+    margin-bottom: 0rem;
+}
 .file-upload{
     &:hover {
         cursor: pointer;
@@ -9,4 +15,5 @@
     margin-bottom: 10px;
     margin-top: 10px;
     border-radius: 15px;
+    height: 30px;
 }

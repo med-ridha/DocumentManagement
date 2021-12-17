@@ -20,7 +20,7 @@ export class WebService {
   }
 
   put(uri: string, payload: any){
-    return this.http.patch(`${this.ROOTURL}/${uri}`, payload);
+    return this.http.put(`${this.ROOTURL}/${uri}`, payload);
   }
 
   delete(uri: string){

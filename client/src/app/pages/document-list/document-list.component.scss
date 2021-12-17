@@ -29,13 +29,13 @@
     overflow: auto;
 }
 
-.list-menu {
+.document-menu {
     display: flex;
     flex-direction: column;
     margin-top: 15px;
     flex-grow: 1;
     min-height: 300px;
-    .list-menu-item{
+    .document-menu-item{
         display: flex;
         align-items: center;
         padding: 10px 15px;
@@ -63,10 +63,6 @@
     border-radius: 5px;
     transition: box-shadow .2s ease, transform .1s ease;
     user-select: none;
-    &:hover {
-        cursor: pointer;
-        box-shadow: 0px 0px 5px #cccccc
-    }
 }
 
 .circle-add-button{
@@ -79,9 +75,6 @@
     border-radius: 50%;
 }
 
-.btn-rounded-corners{
-    border-radius: 25px;
-}
 
 .document {
     p {
@@ -90,9 +83,6 @@
     background-color: #201d1d;
 }
 
-.pull-right {
-    float: right;
-}
 
 .task-delete {
     &:hover {
@@ -107,10 +97,32 @@ a.list-menu-item {
     }
 }
 
+.update-button {
+    background: blue;
+    position: absolute;
+    bottom: 35px;
+    right: 105px;
+    border: none;
+    border-radius: 25px;
+}
 .remove-button {
+    &:hover{
+        background: #6E260E;
+        transition: box-shadow .2s ease, transform .1s ease;
+    }
+    background: red;
     position: absolute;
     bottom: 35px;
     right: 35px;
+    border: none;
+    border-radius: 25px;
+}
+
+.download-button{
+    background: blue;
+    position: absolute;
+    bottom: 35px;
+    right: 180px;
     border: none;
     border-radius: 25px;
 }

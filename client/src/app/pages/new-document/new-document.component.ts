@@ -18,7 +18,7 @@ export class NewDocumentComponent implements OnInit {
  onFileSelected(event: any){
    console.log(event)
    this.file = event.target.files[0];
-     const t = document.getElementById("fileuploadtest")
+     const t = document.getElementById("fileupload")
     if (this.file) {
       this.fileName = this.file.name;
     }

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const documentSchema = new mongoose.Schema({
     fullName: { type: String, required: true },
@@ -9,4 +9,4 @@ const documentSchema = new mongoose.Schema({
 
 const document = mongoose.model('document', documentSchema);
 
-module.exports = document;
+export default document;

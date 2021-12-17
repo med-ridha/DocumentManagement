@@ -2,39 +2,43 @@
     <div class = "document-manager-container">
         <div class="sidebar">
             <h1 class="title has-text-primary">documents</h1>
-            <div class="list-menu">
-                <a class="list-menu-item" *ngFor="let document of documents" [routerLink] = "['/documents', document._id]" routerLinkActive="is-active">
+            <div class="document-menu">
+            <h3 class="white-text" *ngIf="documents.length == 0"> no documents found</h3>
+                <a class="document-menu-item" *ngFor="let document of documents" [routerLink] = "['/documents', document._id]" routerLinkActive="is-active">
                     <p clas="white-text" (click)="onDocumentClick(document._id)">
                         {{ document.fullName }}
-                        <span class="pull-right task-delete btn-rounded-corners">X</span>
                     </p>
                 </a>
             </div>
             <button routerLink="/newdocument" class="btn btn-primary btn-rounded-corners">Add Document</button>
         </div>
-        <div class="document-list-container" >
+        <div class="document-list-container">
             <div *ngIf="found">
                 <h1 class="title has-text-primary">{{ doc[0].fullName }}</h1>
                 <div class="document" >
                     <p class="white-text">
-                        Full Name: {{ doc[0].description }}
+                        Description: {{ doc[0].description }}
                     </p>
                 </div>
                 <div class="document" >
                     <p class="white-text">
-                        Date: {{ doc[0].date }}
+                        Date: {{  mydate }}
                     </p>
                 </div>
-                <div class="document"  (click) = "downloadFile(doc[0].doc)">
+                <div class="document"  >
                     <p class="white-text">
                         <a>
                             document name : {{ doc[0].doc }}
                         </a>
                     </p>
                 </div>
-                <button class="red btn btn-primary remove-button" (click)="deleteDocument(doc[0]._id)">
+                <button class="btn btn-primary remove-button" (click)="deleteDocument(doc[0]._id)">
                     Delete
                 </button>
+                <button class="btn btn-primary update-button" routerLink="/updatedocument/{{ doc[0]._id }}" >
+                    Update 
+                </button>
+                <button (click) = "downloadFile(doc[0].doc)" class="btn btn-primary download-button">Download</button>
             </div>
         </div>
     </div>

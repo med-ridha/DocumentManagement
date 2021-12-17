@@ -14,6 +14,7 @@ export class DocumentListComponent implements OnInit {
   doc : Doc[] = [new Doc()];
   found = false;
   fileName="";
+  mydate : string;
   constructor(
     private documentService: DocumentService,
     private route: ActivatedRoute,
@@ -31,7 +32,13 @@ export class DocumentListComponent implements OnInit {
       const documentId = params['documentId'];
       if (!documentId) return;
       this.documentService.getDocument(documentId).subscribe((doc: any) => {
+        if (!doc[0]){
+          this.router.navigate(['']);
+          return;
+        } 
         this.doc = doc
+        const currentDate = new Date(this.doc[0].date)
+        this.mydate = currentDate.toLocaleString();
         this.found = true;
       });
     });
@@ -60,8 +67,11 @@ export class DocumentListComponent implements OnInit {
   }
 
   deleteDocument(documentId : string){
+    const bool = confirm("are you sure you want to delete this document? there is no go back from here")
+    if (bool){
       this.documentService.deleteDocument(documentId).subscribe(() => {
         this.router.navigate([''])
       });
+    }
   }
 }
